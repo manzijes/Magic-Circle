@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Circle</title>
+    <link rel="icon" type="image/vnd.icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 controls-wrapper">
+                <button class="bttn musicbtn">♫</button>
+                <button class="bttn helpbtn" data-bs-toggle="modal" data-bs-target="#helpModal">?</button>
+                <div id="clockdiv" class="countdown d-none"></div>
+                <div class="timecontrol-btns d-none">
+                    <button class="btn" id="pause">◼</button>
+                    <button class="btn" id="resume">▶</button>
+                </div>
+            </div>
+            <div class="col-12 button-wrapper">
+                <div class="text-center">
+                    <h1>MAGIC</h1>
+                    <div class="text-container">
+                        <span>C</span>
+                        <span>I</span>
+                        <span>R</span>
+                        <span>C</span>
+                        <span>L</span>
+                        <span>E</span>
+                    </div>
+                    <img class="luz" src="images/Luz.png" alt="Luz">
+                </div>
+                <button class="bttn timer-short">Schnelle Runde <span>(30 Minuten)</span></button>
+                <button class="bttn timer-normal">Normale Runde <span>(60 Minuten)</span></button>
+                <button class="bttn timer-long">Lange Runde <span>(90 Minuten)</span></button>
+            </div>
+
+            <div class="col-12 step-wrapper step-1" style="display: none;">
+                    <div class="text-container">
+                        <span>Z</span>
+                        <span>I</span>
+                        <span>R</span>
+                        <span>K</span>
+                        <span>E</span>
+                        <span>L</span>
+                    </div>
+                    <div class="hint">
+                        <p>Jeder Spieler wählt jetzt einen Zirkel.</p>
+                        <p><strong>ACHTUNG</strong>: Mehrere Spieler dürfen nicht demselben Zirkel angehören.</p>
+                    </div>
+                    <button class="bttn leave-1">Weiter</button>
+            </div>
+
+            <div class="col-12 step-wrapper step-2" style="display: none;">
+                <div class="text-container">
+                    <span>S</span>
+                    <span>C</span>
+                    <span>H</span>
+                    <span>A</span>
+                    <span>T</span>
+                    <span>Z</span>
+                </div>
+                <div class="hint">
+                    <p>Ein Schatz ist vom Himmel gefallen! Er wirbelt in der Luft hin und her und landet auf <strong>Feld <span class="luckynumber"></span></strong>.</p>
+                    <p>Wer zuerst darauf landet, gewinnt den Titel <strong>ENTDECKER</strong>. Platziert den Titel am Besten direkt auf dem Feld, um es nicht zu vergessen.</p>
+                </div>
+                <button class="bttn leave-2">Weiter</button>
+            </div>
+
+            <div class="col-12 step-wrapper step-3" style="display: none;">
+                <div class="text-container">
+                    <span>B</span>
+                    <span>E</span>
+                    <span>R</span>
+                    <span>E</span>
+                    <span>I</span>
+                    <span>T</span>
+                    <span>?</span>
+                </div>
+                <div class="hint">
+                    <p>Alles ist vorbereitet. Viel Spaß auf eurem Abenteuer!</p>
+                </div>
+                <button id="start" class="bttn leave-3">START</button>
+                <img class="luzfull" src="images/Luz-Full.png" alt="Luz">
+            </div>
+
+            <div class="col-12 step-wrapper step-4" style="display: none;">
+                <div class="text-container">
+                    <h1>OWL</h1>
+                    <span>H</span>
+                    <span>O</span>
+                    <span>U</span>
+                    <span>S</span>
+                    <span>E</span>
+                </div>
+                <button class="quiz">QUIZ</button>
+                <button class="action">ACTION</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <img class="open-exit" src="images/door-open-solid.svg" alt="Exit" style="display: none;" data-bs-toggle="modal" data-bs-target="#exitModal">
+    <!-- Exit Modal -->
+    <div class="modal fade" id="exitModal" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exitModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exitModalLabel">Sicher abbrechen?</h5>
+            <button type="button" class="bttn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="bttn settingsbtn" data-bs-dismiss="modal">Nein</button>
+                <button class="exit" class="bttn settingsbtn" type="button">Ja</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="actionModal" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="actionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="actionModalLabel">ACTION</h5>
+            <button type="button" class="bttn btn-close btn-close-white closeAction" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="actionContent"></div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="questionModal" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="questionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="questionModalLabel">QUIZ <span id="questionCategory"></span></h5>
+            <button type="button" class="bttn btn-close btn-close-white closeQuestion" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="questionContent"></div>
+                <div id="questionOptions"></div>
+                <div id="questionSolution"></div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="lotteryModal" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="lotteryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="lotteryModalLabel">HALBZEIT</h5>
+            </div>
+            <img class="partyflag" src="images/partyflag.png" alt="partyflag">
+            <div class="modal-body">
+                <p>
+                Aufgepasst! Die Hälfte der Spielzeit ist um. Es ist also Zeit für <strong>die große Lotterie</strong>!
+                </p>
+                <p>
+                Dafür wird ein zufälliger Zirkel mit dem farbigen Würfel ausgelost. 
+                Wer auch immer diesem Zirkel angehört, gewinnt den Titel <strong>GLÜCKSPILZ</strong>.
+                </p>
+                <p>
+                Keine Angst und lasst euch Zeit. Während dieses Fenster offen ist, läuft der Timer nicht weiter.
+                </p>
+                <button type="button" class="bttn closeBigLottery" data-bs-dismiss="modal">Fertig!</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="helpModal" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="helpModalLabel">HILFE</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="accordion" id="accordionExample">
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                          Titel Übersicht
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <p>Beim Sammeln von Titeln gilt: Wer zuerst kommt mal zuerst. Sie sind je 5 Phiolen Titanenblut wert.</p>
+                            <p><strong>ENTDECKER</strong> <br> Du landest auf dem Schatz-Feld, das am Anfang des Spiels zufällig ausgewählt wurde.</p>
+                            <p><strong>GLÜCKSPILZ</strong> <br> Du gewinnst in der großen Lotterie, die bei jedem Spiel zur Halbzeit stattfindet.</p>
+                            <p><strong>ZAUBERTRANK-MEISTER</strong> <br> Du hast alle drei Zaubertrank-Zutaten gesammelt.</p>
+                            <p><strong>STREBER</strong> <br> Du hast drei JOKER gesammelt und nicht ausgegeben.</p>
+                            <p><strong>PECHVOGEL</strong> <br> Du wurdest drei Mal verbrannt.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Warum In-App-Karten?
+                          </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                          <div class="accordion-body">
+                           <p>Es gibt mehr In-App-Karten als analoge Karten. Außerdem werden In-App-Karten automatisch gemischt.</p>
+                           <p>Die Reihenfolge der Antwortmöglichkeiten für In-App-Quizkarten ändert sich mit jedem Spiel.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                 
+                </div>
+
+                <button type="button" class="bttn closeHelp" data-bs-dismiss="modal">Okay</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="gameOverModal" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="gameOverModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="gameOverModalLabel">GAME OVER</h5>
+            </div>
+            <img class="king" src="images/King.png" alt="King">
+            <div class="modal-body">
+                <p>Die Zeit ist um! Wer hat das meiste Titanenblut gesammelt?</p>
+                <p>Du bist ohne Zweifel die mächtigste Person auf den brodelnden Inseln!</p>
+                <p><strong>Hinweis</strong>: Vergesst nicht, <strong>Titel</strong> sind 5 Phiolen Titanenblut wert.</p>
+                <button class="exit" class="bttn settingsbtn" type="button">NEUSTART</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <audio loop id="music">
+        <source src="sounds/waterfall.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="buttonsound">
+        <source src="sounds/cartoon_wink.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="alarm">
+        <source src="sounds/alarm.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="trumpets">
+        <source src="sounds/trumpets.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="drawcard">
+        <source src="sounds/drawcard.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>

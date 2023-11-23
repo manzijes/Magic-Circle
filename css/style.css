@@ -1,0 +1,378 @@
+@font-face 
+{
+    font-family: "LG";
+    src: url(../fonts/HachiMaruPop-Regular.ttf);
+}
+
+@font-face 
+{
+    font-family: "Sauce";
+    src: url(../fonts/Sriracha-Regular.ttf);
+}
+
+
+body, body *
+{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+}
+
+body
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #db7f8e;
+    color: whitesmoke;
+    font-family:Arial, Helvetica, sans-serif
+}
+
+img
+{
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    padding: 20px;
+}
+
+.text-container
+{
+    text-align: center;
+}
+
+h1
+{
+    font-family: "LG";
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+p
+{
+    line-height: 1.2;
+}
+
+button.musicbtn,
+button.helpbtn
+{
+    padding: 5px 11px;
+    padding-bottom: 9px;
+    line-height: 1;
+    font-size: 2rem;
+    border: 2px solid #ffe5ec;
+    font-weight: 400;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: transparent;
+    color: #ffe5ec;
+    width: fit-content;
+    position: fixed;
+    z-index: 3;
+}
+
+button.musicbtn
+{
+    bottom: 20px;
+    left: 20px;
+}
+
+button.helpbtn
+{
+    bottom: 20px;
+    left: 80px;
+    min-width: 50px;
+}
+
+button.musicbtn.playing,
+#pause.paused
+{
+    background-color: honeydew;
+    border: 2px solid honeydew;
+    color: #db7f8e;
+}
+button.musicbtn.playing{
+    color: #db7f8e;
+}
+
+.countdown,
+.timecontrol-btns button
+{
+    text-align: center;
+    font-weight: 400;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #ffe5ec;
+    border: 2px solid #ffe5ec;
+    border-radius: 5px;
+    margin-top: 10px;
+    line-height: 1;
+    padding: 10px;
+}
+.timecontrol-btns {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+.timecontrol-btns button
+{
+    width: fit-content;
+    height: auto;
+    min-width: 50px;
+    min-height: 50px;
+}
+.countdown
+{
+    background: #ffe5ec;
+    border-color: honeydew;
+    color: crimson;
+    font-weight: bold;
+    margin-top: 0;
+    padding: 10px;
+    border-width: 10px;
+}
+
+button
+{
+    font-family: "Sauce";
+    width: 100%;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    line-height: normal;
+    padding: 20px 15px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    background-color: #ffe5ec;
+    text-transform: uppercase;
+    color: #db7f8e;
+    font-weight: bold;
+    border: 10px solid honeydew;
+}
+
+button:active,
+button:hover,
+button:focus
+{
+    outline: none;
+    box-shadow: none;
+}
+
+.button-wrapper
+{
+    min-height: calc(90vh - 300px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+img.luz {
+    width: 150px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+img.luzfull
+{
+    max-height: 45vh;
+    width: auto;
+}
+
+.hint
+{
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.controls-wrapper
+{
+    min-height: 90px;
+}
+
+.step-wrapper
+{
+    min-height: calc(90vh - 250px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.luckynumber,
+strong
+{
+    display: inline;
+    text-transform: uppercase;
+    font-family: "Sauce";
+}
+
+button span
+{
+    font-size: 1.3rem;
+    text-transform: none;
+    font-weight: 400;
+}
+
+.text-container > span {
+    text-transform: uppercase;
+    animation: glow 2s ease-in-out infinite;
+    display: inline;
+    font-size: 2.5rem;
+    font-family: "LG";
+  }
+  
+  @keyframes glow {
+    0%, 100% {
+      text-shadow: 0 0 10px honeydew, 0 0 50px honeydew, 0 0 100px honeydew;
+    }
+    
+    10%, 90% {
+        color: #FFF;
+      text-shadow: none;
+    }
+  }
+  
+  .text-container > span:nth-child(2) {
+    animation-delay: 0.25s;
+  }
+  .text-container > span:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+  .text-container > span:nth-child(4) {
+    animation-delay: 0.75s;
+  }
+  .text-container > span:nth-child(5) {
+    animation-delay: 1s;
+  }
+  .text-container > span:nth-child(6) {
+    animation-delay: 1.25s;
+  }
+  .text-container > span:nth-child(7) {
+    animation-delay: 1.5s;
+  }
+
+p,
+span
+{
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.modal-title
+{
+    font-family: "Sauce";
+}
+.modal-title span{
+    display: inline-block;
+}
+#questionModal .modal-content {
+    background-color: cornflowerblue;
+    border: 10px solid darkslateblue;
+}
+#questionContent {
+    margin-bottom: 20px;
+}
+#questionOptions {
+    margin-bottom: 25px;
+}
+#questionSolution{
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    background-color: whitesmoke;
+    transition: all 0.5s;
+}
+#questionSolution:hover{
+    background-color: transparent;
+}
+.modal-body
+{
+    padding: 40px 20px;
+}
+.modal-body button
+{
+    margin-top: 20px;
+}
+.modal-body p + button
+{
+    margin-top: 40px;
+}
+.modal-dialog {
+    margin: 20px;
+}
+.modal-content {
+    font-size: 1.2rem;
+}
+
+#gameOverModal .modal-body {
+    padding: 20px;
+}
+#gameOverModal .modal-body p + button {
+    margin-top: 20px;
+}
+
+.open-exit
+{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: auto;
+    z-index: 3;
+}
+
+.modal-content
+{
+    background-color: #db7f8e;
+}
+
+.accordion-body p:last-of-type{
+    margin-bottom: 0;
+}
+
+.accordion-body {
+    padding: 20px;
+}
+button.accordion-button {
+    font-size: 1.2rem;
+}
+.accordion-button:focus,
+.accordion-button:active
+{
+    border: none;
+    box-shadow: none;
+}
+.accordion-button,
+.accordion-button:not(.collapsed){
+    background-color: white;
+    color: #db7f8e;
+}
+.accordion-button:not(.collapsed){
+    border-bottom: 1px solid #db7f8e;
+}
+.accordion-item{
+    color: #db7f8e;
+}
+
+#actionModal .modal-content 
+{
+    background-color: indianred;
+    border: 10px solid brown;
+}
+.modal-body .accordion button{
+    margin-top: 0;
+ }
+
+ .modal-body .accordion-item + .accordion-item{
+    margin-top: 20px;
+ }
+
+ .accordion-button:not(.collapsed)::after{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+ }
